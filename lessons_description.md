@@ -44,3 +44,16 @@ const {user} = useUser();
   images: {
     domains: ['s.gravatar.com'],
   },
+
+
+  part-3.1
+  Protect routes - grant access to the pages / routes only if authentificated
+
+  for each route / page we have implemented:
+  import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+
+  export const getServerSideProps = withPageAuthRequired (() => {
+    return {
+        props: {},
+    }
+});
