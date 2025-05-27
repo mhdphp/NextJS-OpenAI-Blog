@@ -57,3 +57,54 @@ const {user} = useUser();
         props: {},
     }
 });
+
+part-4
+Create the basic AppLayout component
+Prepare _app.js to accept multiple page layouts
+
+<!-- function MyApp({ Component, pageProps }) {
+
+  // If the component has a getLayout function, use it to wrap the page
+  // Otherwise, just render the page as is
+  // This allows for different layouts for different pages
+  const getLayout = Component.getLayout || ((page) => page);
+
+  return (
+    <UserProvider>
+
+      {getLayout(<Component {...pageProps} />, pageProps)}
+      
+    </UserProvider>
+  ) 
+} -->
+
+Use this layout on news.js page
+
+<!-- import { AppLayout } from "../../components/AppLayout";
+
+export default function NewPost(props) {
+    console.log("New Post Props: ", props);
+    return (
+        <div>
+            <h1>This is the new post page</h1>
+        </div>
+    )
+}
+
+NewPost.getLayout = function getLayout(page, pageProps){
+    // use the AppLayout for this page
+    return(
+        <AppLayout {...pageProps}>{page}</AppLayout>
+    )
+}
+
+
+// using withPageAuthRequired make this page / route available only if the user is logged in
+// pageProps will be passed to the page component
+export const getServerSideProps = withPageAuthRequired (() => {
+    return {
+        props: {
+            test: "this is a test",
+        },
+    }
+}); -->
