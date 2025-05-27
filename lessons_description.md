@@ -1,4 +1,4 @@
-part-2 branch
+### part-2 branch
 
 Setup Auth0 for authentification - Section 2 / 6 lesson
 https://www.udemy.com/course/next-js-ai/learn/lecture/36149088#questions
@@ -12,7 +12,7 @@ AUTH0_CLIENT_ID=
 AUTH0_CLIENT_SECRET=
 
 
-part-3 branch
+### part-3 branch
 
 in index.js
 implement:
@@ -58,7 +58,8 @@ const {user} = useUser();
     }
 });
 
-part-4
+### part-4 branch
+
 Create the basic AppLayout component
 Prepare _app.js to accept multiple page layouts
 
@@ -108,3 +109,8 @@ export const getServerSideProps = withPageAuthRequired (() => {
         },
     }
 }); -->
+
+### part-4.1 branch
+
+working in AppLayout.js for the layout that will be use in pages/post/new
+styling with Tailwind css
