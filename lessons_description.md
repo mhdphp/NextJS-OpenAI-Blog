@@ -113,4 +113,10 @@ export const getServerSideProps = withPageAuthRequired (() => {
 ### part-4.1 branch
 
 working in AppLayout.js for the layout that will be use in pages/post/new
-styling with Tailwind css
+Styling with Tailwind css
+
+
+### part-4.2 branch
+
+All the functionality user name / login /logout moved from index.js to the AppLayout.js
+Styling with Tailwind css
