@@ -120,3 +120,14 @@ Styling with Tailwind css
 
 All the functionality user name / login /logout moved from index.js to the AppLayout.js
 Styling with Tailwind css
+
+
+### part-4.3 branch
+
+Create the sidebar header and rollout the AppLayout on relevant pages.
+Create logo component using the:
+<!-- 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBrain } from "@fortawesome/free-solid-svg-icons";
+ -->
+Create the component/Logo/Logo.js and component/Logo/index.js
