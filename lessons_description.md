@@ -218,3 +218,36 @@ changing in next.config.js images.domains with image.remotePatterns
       },
     ],
   }, -->
+
+  ### part-5 branch Generating blog posts with OpenAI GPT API and MongoDB
+  Create an api end point:
+  pages/api/generatePost.js
+
+  <!-- export default function handler(req, res) {
+  res.status(200).json({ name: 'Generated Post', text: "A beautiful content" })
+  } -->
+
+  then check it out in
+  pages\post\new.js
+
+  <!-- export default function NewPost(props) {
+    // console.log("New Post Props: ", props);
+
+    const handleClick = async () => { 
+        const response = await fetch("/api/generatePost",{
+            method: "POST",
+        });
+        const data = await response.json();
+        console.log("Response from API: ", data);
+    }
+
+    return (
+        <div>
+            <h1>This is the new post page</h1>
+            <button onClick={handleClick} className="btn">
+                Generate Post
+            </button>
+            <p>Test: {props.test}</p>
+        </div>
+    );
+} -->
