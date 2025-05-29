@@ -189,6 +189,7 @@ And in tailwind.confit.js we updated theme{}
 
 
   ### part-4.5 branch
+
   Install extension Tailwind CSS Intelisense
 
   Go in ./style/globals.css and include a bundle of tailwind classes into @layer components
@@ -202,4 +203,18 @@ And in tailwind.confit.js we updated theme{}
 
 style the index.js page, and the side-bar header
 
- 
+
+### part-4.6 branch
+
+changing in next.config.js images.domains with image.remotePatterns
+
+<!-- images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's.gravatar.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  }, -->

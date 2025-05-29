@@ -5,7 +5,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['s.gravatar.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's.gravatar.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 }
 
