@@ -186,3 +186,20 @@ And in tailwind.confit.js we updated theme{}
       },
     },
   }, -->
+
+
+  ### part-4.5 branch
+  Install extension Tailwind CSS Intelisense
+
+  Go in ./style/globals.css and include a bundle of tailwind classes into @layer components
+<!-- 
+  @layer components {
+  .btn {
+    @apply block bg-green-500 tracking-wider w-full mt-2 mb-2 text-center
+     text-white font-bold cursor-pointer uppercase py-2 px-2 rounded-md hover:bg-green-600 transition-colors
+  }
+} -->
+
+style the index.js page, and the side-bar header
+
+ 

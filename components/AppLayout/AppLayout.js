@@ -17,7 +17,7 @@ export const AppLayout = ({children}) => {
                 <div className="bg-slate-800 px-2">
                     <Logo />
                     <Link href="/post/new" 
-                        className="block bg-green-500 tracking-wider w-full mt-2 mb-2 text-center text-white font-bold cursor-pointer uppercase py-2 px-2 rounded-md hover:bg-green-600 transition-colors">
+                        className="btn">
                         New Post
                     </Link>
                     <Link href="/token-topup" className="block mt-2 text-center">
