@@ -220,7 +220,7 @@ changing in next.config.js images.domains with image.remotePatterns
   }, -->
 
   ### part-5 branch Generating blog posts with OpenAI GPT API and MongoDB
-  Create an api end point:
+  Create an api end point for testing purposes:
   pages/api/generatePost.js
 
   <!-- export default function handler(req, res) {
@@ -247,6 +247,98 @@ changing in next.config.js images.domains with image.remotePatterns
             <button onClick={handleClick} className="btn">
                 Generate Post
             </button>
+            <p>Test: {props.test}</p>
+        </div>
+    );
+} -->
+
+### part-5.1 branch Calling OpenAI API
+
+Install the react-markdown for rendering the OpenAI response
+<!-- pnpm add react-markdown -->
+
+
+In api/generatedPost.js we insert:
+
+<!-- export default async function handler(req, res) {
+  
+  const config = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  // initialization of openai with the openai api key:
+  const openai = new OpenAIApi(config);
+
+  // prompt construction
+  const topic = "cat ownership";
+  const keywords = ["first-time cat owner", "cat training", "cat care tips"];
+  // const prompt = `Write a blog post about ${topic} that includes the following keywords: ${keywords.join(", ")}.`;
+
+  // get response - here using the OpenAI model:
+  const response = await openai.createChatCompletion({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: `And we want to say something like, you are an SEO friendly blog post generator called Blog Standard.
+        You are designed to output markdown without front matter.`
+      },
+      {
+        role: "user",
+        content: `Generate a blog post based on the following topic delimited by triple hyphens, 
+        whith  a mininum of 100 words:
+        ---
+        ${topic}
+        ---
+        Targeting the following comma separated keywords delimited by triple hyphens:
+        ---
+        ${keywords.join(", ")}
+        ---`
+      },
+    ],
+  });
+
+  // console.log(response.data.choices[0]?.message?.content);
+
+  res.status(200).json({postContent: response.data.choices[0]?.message?.content || "No content generated."});
+} -->
+
+in pages/post/new.js
+<!-- import { useState } from "react";
+import Markdown from "react-markdown"; -->
+
+<!-- export default function NewPost(props) {
+    // console.log("New Post Props: ", props);
+
+    // define useState
+    const [postContent, setPostContent] = useState("");
+
+    const handleClick = async () => { 
+        const response = await fetch("/api/generatePost",{
+            method: "POST",
+        });
+        const data = await response.json();
+
+        // test in console.log the response from the OpenAi
+        console.log("Response from API: ", data.postContent);
+        
+        // initialize the postContent in useState
+        setPostContent(data.postContent);
+    }
+
+    return (
+        <div>
+            <h1>This is the new post page</h1>
+            <button onClick={handleClick} className="btn">
+                Generate Post
+            </button>
+
+            // render the markdown response from postContent using the markdown-react package
+            <Markdown>
+                {postContent}
+            </Markdown>
+            
+            <br />  
             <p>Test: {props.test}</p>
         </div>
     );

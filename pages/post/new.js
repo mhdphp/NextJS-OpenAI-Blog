@@ -1,16 +1,21 @@
 
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { AppLayout } from "../../components/AppLayout";
+import { useState } from "react";
+import Markdown from "react-markdown";
 
 export default function NewPost(props) {
     // console.log("New Post Props: ", props);
+
+    const [postContent, setPostContent] = useState("");
 
     const handleClick = async () => { 
         const response = await fetch("/api/generatePost",{
             method: "POST",
         });
         const data = await response.json();
-        console.log("Response from API: ", data);
+        console.log("Response from API: ", data.postContent);
+        setPostContent(data.postContent);
     }
 
     return (
@@ -19,6 +24,10 @@ export default function NewPost(props) {
             <button onClick={handleClick} className="btn">
                 Generate Post
             </button>
+            <Markdown>
+                {postContent}
+            </Markdown>
+            <br />  
             <p>Test: {props.test}</p>
         </div>
     );
