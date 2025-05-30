@@ -24,11 +24,11 @@ export default function NewPost(props) {
             }),
         });
         const data = await response.json();
-        // console.log("Response from API: ", data.post.postContent);
-        // set tha data to data.post.postContent as come from
+        // console.log("Response from API: ", data.post.postDoc);
+        // set tha data to data.post.postDoc as come from
         // api/generatePost.js
         setPostContent(data.post.postDoc);
-        // console.log("Post Content: ", postContent);
+        console.log("Post Content: ", postContent);
     }
 
     return (

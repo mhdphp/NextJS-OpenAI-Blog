@@ -77,7 +77,8 @@ export default async function handler(req, res) {
     const {title, metaDescription} = JSON.parse(seoContent);
 
     // console.log("SEO Content: ", {title, metaDescription});
-
+  
+  // send the response back to the client
   res.status(200).json({
     post: { 
       postDoc, 
