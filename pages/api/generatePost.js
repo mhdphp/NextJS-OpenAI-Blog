@@ -9,8 +9,10 @@ export default async function handler(req, res) {
 
   const openai = new OpenAIApi(config);
 
-  const topic = "cat ownership";
-  const keywords = ["first-time cat owner", "cat training", "cat care tips", "cat bioenergy"];
+  const { topic, keywords } = req.body;
+
+  // const topic = "cat ownership";
+  // const keywords = ["first-time cat owner", "cat training", "cat care tips", "cat bioenergy"];
   // const prompt = `Write a blog post about ${topic} that includes the following keywords: ${keywords.join(", ")}.`;
 
   // first API call to generate the blog post content
@@ -31,7 +33,7 @@ export default async function handler(req, res) {
         ---
         Targeting the following comma separated keywords delimited by triple hyphens:
         ---
-        ${keywords.join(", ")}
+        ${keywords}
         ---`
       },
     ],

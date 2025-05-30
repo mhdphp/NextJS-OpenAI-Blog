@@ -356,3 +356,64 @@ use:
   <!-- const seoContent = seoResponse.data.choices[0]?.message?.content || "{}";
 
   const {title, metaDescription} = JSON.parse(seoContent); -->
+
+
+### part-5.3 pass topic and keywords of the user to OpenAi
+
+1. in pages/post/new.js
+useState for topic, keywords
+<!-- const [topic, setTopic] = useState("");
+const [keywords, setKeywords] = useState(""); -->
+
+replace handleClick with handleSubmmit function
+add headers and body parameters
+<!-- const handleSubmit = async (e) => { 
+        e.preventDefault();
+        const response = await fetch("/api/generatePost",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                topic,
+                keywords
+            }),
+        }); -->
+
+created form for both topic and keywords
+
+  <!-- <form onSubmit={handleSubmit} className="form">
+      <div>
+          <label>
+              <strong>Generate a blog post on the topic of:</strong>
+          </label>
+          <textarea
+              className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
+              placeholder="Enter a topic for your blog post" 
+              value={topic} 
+              onChange={(e) => setTopic(e.target.value)}
+          />
+      </div>
+      <div>
+            <label>
+              <strong>Targeting the following keywords:</strong>
+          </label>
+          <textarea
+              className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
+              placeholder="Enter keywords for your blog post"
+              value={keywords}
+              onChange={(e) => setKeywords(e.target.value)}
+          />
+      </div>
+
+      <button type='submit' className="btn">
+          Generate Post
+      </button>
+
+  </form> -->
+
+  2. in pages/api/generatePost.js
+  create by destructuring the {topic, keywords}
+
+  <!-- const { topic, keywords } = req.body; -->
+
