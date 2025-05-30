@@ -417,3 +417,43 @@ created form for both topic and keywords
 
   <!-- const { topic, keywords } = req.body; -->
 
+### part-5.4.1
+
+create MongoDb at: https://cloud.mongodb.com
+database name: BlogStandardTest
+username: mihai32
+
+create **pages/api/addToken.js**
+
+import { getSession } from '@auth0/nextjs-auth0';
+
+<!-- export default async function handler(req, res) {
+  // testing the session
+  // all the data about the user is in the session  
+  const { user } = await getSession( req, res );
+  console.log('user', user);  
+
+  res.status(200).json({ name: 'John Doe' })
+} -->
+
+test if user is shown in the console (from the data from auth0)
+
+update **pages/token-topup.js**
+
+<!-- export default function TokenTopup(props) {
+
+  const handleClick = async () => {
+    await fetch('/api/addToken', {
+      method: 'POST',
+    });
+  }
+
+  return (
+    <div>
+      <h1>This is the token topup page</h1>
+      <button onClick={handleClick} className="btn">
+        Add 100 tokens
+      </button>
+    </div>
+  );
+} -->

@@ -3,9 +3,19 @@ import  { AppLayout } from "../components/AppLayout/AppLayout";
 
 
 export default function TokenTopup(props) {
+
+  const handleClick = async () => {
+    await fetch('/api/addToken', {
+      method: 'POST',
+    });
+  }
+
   return (
     <div>
       <h1>This is the token topup page</h1>
+      <button onClick={handleClick} className="btn">
+        Add 100 tokens
+      </button>
     </div>
   );
 }
