@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
   // console.log(response.data.choices[0]?.message?.content);
 
-  const postContent = response.data.choices[0]?.message?.content || "No content generated.";
+  const postDoc = response.data.choices[0]?.message?.content || "No content generated.";
 
   // second API call to generate SEO friendly title and meta description
   const seoResponse = await openai.createChatCompletion({
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
         {
           role: "user",
           content: `Create a SEO friendly title and meta description for the following blog post:
-          ${postContent}
+          ${postDoc}
           ---
           The output json should have the following format:
           {
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
 
   res.status(200).json({
     post: { 
-      postContent, 
+      postDoc, 
       title, 
       metaDescription 
     } 

@@ -27,7 +27,8 @@ export default function NewPost(props) {
         // console.log("Response from API: ", data.post.postContent);
         // set tha data to data.post.postContent as come from
         // api/generatePost.js
-        setPostContent(data.post.postContent);
+        setPostContent(data.post.postDoc);
+        // console.log("Post Content: ", postContent);
     }
 
     return (
