@@ -459,3 +459,44 @@ update **pages/token-topup.js**
 } -->
 
 ### part-5.4.2
+
+Connect to MongoDB data base.
+The data base name is: "blogstandard"
+Use upsert cmd -> if the object doesn't exist it will be created and inserted in the database
+The user object is from auth0 authentification service
+
+page/api/addToken.js
+
+<!-- import { getSession } from '@auth0/nextjs-auth0';
+import clientPromise from '../../lib/mongodb';
+
+
+export default async function handler(req, res) {
+  // testing the session
+  // all the data about the user is in the session  
+  const { user } = await getSession( req, res );
+  
+  // console.log('user', user);
+
+  // connec to the mongoDB database
+  const client = await clientPromise;
+  const db = client.db('blogstandard');
+  const userProfile = await db
+  .collection('users')
+  .updateOne(
+    { 
+      auth0Id: user.sub,
+      name: user.name,
+    },
+   
+    {
+      $inc: { availableTokens: 10 },
+      $setOnInsert: { auth0Id: user.sub }
+    },
+    
+    // if the user does not exist, create it
+    { upsert: true }
+  );
+
+  res.status(200).json({ name: 'John Doe' })
+} -->
