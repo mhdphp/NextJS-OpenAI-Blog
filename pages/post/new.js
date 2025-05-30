@@ -14,8 +14,10 @@ export default function NewPost(props) {
             method: "POST",
         });
         const data = await response.json();
-        console.log("Response from API: ", data.postContent);
-        setPostContent(data.postContent);
+        console.log("Response from API: ", data.post.postContent);
+        // set tha data to data.post.postContent as come from
+        // api/generatePost.js
+        setPostContent(data.post.postContent);
     }
 
     return (

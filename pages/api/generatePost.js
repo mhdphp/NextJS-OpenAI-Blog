@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const openai = new OpenAIApi(config);
 
   const topic = "cat ownership";
-  const keywords = ["first-time cat owner", "cat training", "cat care tips"];
+  const keywords = ["first-time cat owner", "cat training", "cat care tips", "cat bioenergy"];
   // const prompt = `Write a blog post about ${topic} that includes the following keywords: ${keywords.join(", ")}.`;
 
   const response = await openai.createChatCompletion({
@@ -23,8 +23,8 @@ export default async function handler(req, res) {
       },
       {
         role: "user",
-        content: `Generate a blog post based on the following topic delimited by triple hyphens, 
-        whith  a mininum of 100 words:
+        content: `Generate a blog post based on the following topic, with subtitles, delimited by triple hyphens, 
+        whith  a mininum of 250 words:
         ---
         ${topic}
         ---
@@ -38,5 +38,7 @@ export default async function handler(req, res) {
 
   // console.log(response.data.choices[0]?.message?.content);
 
-  res.status(200).json({postContent: response.data.choices[0]?.message?.content || "No content generated."});
+  const postContent = response.data.choices[0]?.message?.content || "No content generated.";
+
+  res.status(200).json({post: { postContent } });
 }
