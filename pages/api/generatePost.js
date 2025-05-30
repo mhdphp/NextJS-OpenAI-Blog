@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     messages: [
       {
         role: "system",
-        content: `And we want to say something like, you are an SEO friendly blog post generator called Blog Standard.
+        content: `You are an SEO friendly blog post generator called Blog Standard.
         You are designed to output markdown without front matter.`
       },
       {
