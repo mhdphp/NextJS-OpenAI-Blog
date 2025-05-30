@@ -343,3 +343,16 @@ import Markdown from "react-markdown"; -->
         </div>
     );
 } -->
+
+
+### part-5.2 branch Calling OpenAI API twice
+
+1. calling the OpenAI API for blog text generation
+use the API request in the format {post:{postContent}}
+in the pages/post/new.js use data.post.postContent to get the data
+
+2. calling the OpenAi API for SEO title and metaDescription generation
+use:
+  <!-- const seoContent = seoResponse.data.choices[0]?.message?.content || "{}";
+
+  const {title, metaDescription} = JSON.parse(seoContent); -->
