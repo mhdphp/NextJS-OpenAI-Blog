@@ -500,3 +500,43 @@ export default async function handler(req, res) {
 
   res.status(200).json({ name: 'John Doe' })
 } -->
+
+
+### part-5.5
+
+retrieve the user logged from the database:
+<!-- const userProfile = await db.collection("users").findOne({auth0Id: user.sub});-->
+
+The user was created in the addToken.js route
+The user structure in the database is:
+
+<!-- {"_id":{"$oid":"683abb834ace3d77e4c4a399"},
+"email":"mihain69@gmail.com",
+"name":"mihain69",
+"auth0Id":"auth0|6839ab660adc4a5e81269229",
+"availableTokens":{"$numberInt":"4"}} -->
+
+Check if the user exists
+Check if the user has enough tokens (user.availableTokens)
+
+If all the chekings are true then purse to connect to the OpenAI model and generate post based on topic and keywords
+Once the post-text is generated (markdown format) send the text again to the OpenAI model to create title and metadescription
+The add the post to the database with the following strucure:
+
+{"_id":{"$oid":"683b3af2653ee5c3d9478340"},
+"postDoc":"## A Brain Fitness Program for People in Their 40s [...] worth the effort.",
+"title":"Brain Fitness Program for People in Their 40s",
+"metaDescription":"Discover a brain fitness program designed for those in their 40s. Engage in memory activities and enhance cognitive health, even in isolation.",
+"topic":"Preparea a short brain fitness program for people in their 40s. What memory activities should they do if they are isolated in a location.",
+"keywords":"",
+"userId":{"$oid":"683abb834ace3d77e4c4a399"},
+"createdAt":{"$date":{"$numberLong":"1748712178844"}}}
+
+ // send the response back to the client
+  <!-- res.status(200).json({
+    post: { 
+      postDoc, 
+      title, 
+      metaDescription 
+    } 
+  }); -->

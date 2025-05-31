@@ -7,17 +7,26 @@ export default async function handler(req, res) {
   // all the data about the user is in the session  
   const { user } = await getSession( req, res );
   
-  // console.log('user', user);
+  console.log('user', user);
 
   // connec to the mongoDB database
   const client = await clientPromise;
   const db = client.db('blogstandard');
+
+  // find the user profile in the database using the auth0Id
+  // and nickname
+  // if the user does not exist, create it with the following fields:
+  // auth0Id: user.sub
+  // name: user.nickname
+  // email: user.email
+  // availableTokens: 10
   const userProfile = await db
   .collection('users')
   .updateOne(
     { 
       auth0Id: user.sub,
-      name: user.name,
+      name: user.nickname,
+      email: user.email
     },
    
     {

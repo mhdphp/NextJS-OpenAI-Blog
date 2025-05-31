@@ -11,8 +11,28 @@ export default function NewPost(props) {
     const [topic, setTopic] = useState("");
     const [keywords, setKeywords] = useState("");
 
+    // const handleSubmit = async (e) => { 
+    //     e.preventDefault();
+    //     const response = await fetch("/api/generatePost",{
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             topic,
+    //             keywords
+    //         }),
+    //     });
+    //     const data = await response.json();
+    //     // console.log("Response from API: ", data.post.postDoc);
+    //     // set tha data to data.post.postDoc as come from
+    //     // api/generatePost.js
+    //     setPostContent(data.post.postDoc);
+    // }
+
     const handleSubmit = async (e) => { 
-        e.preventDefault();
+    e.preventDefault();
+    try {
         const response = await fetch("/api/generatePost",{
             method: "POST",
             headers: {
@@ -24,12 +44,24 @@ export default function NewPost(props) {
             }),
         });
         const data = await response.json();
-        // console.log("Response from API: ", data.post.postDoc);
-        // set tha data to data.post.postDoc as come from
-        // api/generatePost.js
-        setPostContent(data.post.postDoc);
-        console.log("Post Content: ", postContent);
+        
+        if (data.error) {
+            // Handle error case
+            alert(data.error);
+            return;
+        }
+        
+        if (data.post) {
+            setPostContent(data.post.postDoc);
+        }
+    } catch (error) {
+        console.error("Error generating post:", error);
+        alert("An error occurred while generating the post.");
     }
+}
+
+
+        console.log("Post Content: ", postContent);
 
     return (
         <div>
