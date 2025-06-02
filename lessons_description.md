@@ -540,3 +540,15 @@ The add the post to the database with the following strucure:
       metaDescription 
     } 
   }); -->
+
+
+  ### part-5.6
+
+  1. Createa a test-db.js page for testing the post using a specific postId and author-user.
+  we use: getServerSideProps
+  1. get the user session from auth0 (get all the user profile as logged);
+  2. initiate the database operations (connect to the cluster in mongodb);
+  3. fetch user profile object
+  4. fetch post profile object using the user id and the post id
+  5. validate the user and post existence
+  6. get the post properties from database and save it as props (to be availale to the page)

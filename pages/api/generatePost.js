@@ -5,12 +5,12 @@ import clientPromise from "../../lib/mongodb";
 
 // wrapp the handler function with withApiAuthRequired to protect the API route - generate posts
 // This will ensure that only authenticated users can access this API route
-export default  async function handler(req, res) {
+export default withApiAuthRequired(async function handler(req, res) {
 
   // get the user data from the session - Auth0
   const { user } = await getSession(req, res);
   // the user object is from Auth0 and contains user information
-  console.log("User: ", user);
+  // console.log("User: ", user);
 
   // connect to the MongoDB database
   const client = await clientPromise;
@@ -30,7 +30,7 @@ export default  async function handler(req, res) {
       return;
     }
   
-  console.log("User Profile: ", userProfile);
+  // console.log("User Profile: ", userProfile);
 
   // Check if the user has enough tokens to generate a post
     if (userProfile.availableTokens <= 0) {
@@ -108,7 +108,7 @@ export default  async function handler(req, res) {
 
     const {title, metaDescription} = JSON.parse(seoContent);
 
-    console.log("SEO Content: ", {title, metaDescription});
+    // console.log("SEO Content: ", {title, metaDescription});
 
     //decrease the user's available tokens by 2
     db.collection("users").updateOne({
@@ -125,6 +125,7 @@ export default  async function handler(req, res) {
       metaDescription,
       topic,
       keywords,
+      author: userProfile.email, // the name from the mongodb user profile
       userId: userProfile._id, // the id from the mongodb user profile
       createdAt: new Date()
     });
@@ -138,4 +139,4 @@ export default  async function handler(req, res) {
       metaDescription 
     } 
   });
-};
+});

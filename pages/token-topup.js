@@ -14,7 +14,7 @@ export default function TokenTopup(props) {
     <div>
       <h1>This is the token topup page</h1>
       <button onClick={handleClick} className="btn">
-        Add 100 tokens
+        Add 10 tokens
       </button>
     </div>
   );

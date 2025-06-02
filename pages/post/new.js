@@ -11,25 +11,7 @@ export default function NewPost(props) {
     const [topic, setTopic] = useState("");
     const [keywords, setKeywords] = useState("");
 
-    // const handleSubmit = async (e) => { 
-    //     e.preventDefault();
-    //     const response = await fetch("/api/generatePost",{
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             topic,
-    //             keywords
-    //         }),
-    //     });
-    //     const data = await response.json();
-    //     // console.log("Response from API: ", data.post.postDoc);
-    //     // set tha data to data.post.postDoc as come from
-    //     // api/generatePost.js
-    //     setPostContent(data.post.postDoc);
-    // }
-
+    
     const handleSubmit = async (e) => { 
     e.preventDefault();
     try {
@@ -61,7 +43,7 @@ export default function NewPost(props) {
 }
 
 
-        console.log("Post Content: ", postContent);
+        // console.log("Post Content: ", postContent);
 
     return (
         <div>
