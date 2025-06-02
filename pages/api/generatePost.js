@@ -3,6 +3,7 @@ import { getSession, withApiAuthRequired } from "@auth0/nextjs-auth0";
 import clientPromise from "../../lib/mongodb";
 
 
+
 // wrapp the handler function with withApiAuthRequired to protect the API route - generate posts
 // This will ensure that only authenticated users can access this API route
 export default withApiAuthRequired(async function handler(req, res) {
@@ -61,7 +62,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       {
         role: "user",
         content: `Generate a blog post based on the following topic, with subtitles, delimited by triple hyphens, 
-        whith  a minimum of 100 words:
+        whith a minimum of 100 words:
         ---
         ${topic}
         ---
@@ -117,7 +118,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       $inc: { availableTokens: -2 } // Deduct one token for generating a post   
     }
     );
-
+    
     // insert the generated post into the database
     const post = await db.collection("posts").insertOne({
       postDoc,
@@ -130,13 +131,11 @@ export default withApiAuthRequired(async function handler(req, res) {
       createdAt: new Date()
     });
 
+    console.log("Post Created: ", post);
+
   
   // send the response back to the client
   res.status(200).json({
-    post: { 
-      postDoc, 
-      title, 
-      metaDescription 
-    } 
+    postId: post.insertedId,
   });
 });

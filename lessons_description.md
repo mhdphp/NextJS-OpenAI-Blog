@@ -552,3 +552,21 @@ The add the post to the database with the following strucure:
   4. fetch post profile object using the user id and the post id
   5. validate the user and post existence
   6. get the post properties from database and save it as props (to be availale to the page)
+
+### part-5.7
+
+In api/generatedPost.js get response the postId
+  <!-- res.status(200).json({
+    postId: post.insertedId,
+  }); -->
+in pages/post/new.js:
+<!-- const response = await fetch("/api/generatePost"... -->
+will use {useRouter} to re-direct the data postId to the post/postId page
+<!-- const router = useRouter();
+const data = await response.json();
+[...]
+console.log("Response Data: ", data);
+if (data.postId){
+    router.push(`/post/${data.postId}`);
+    return;
+} -->

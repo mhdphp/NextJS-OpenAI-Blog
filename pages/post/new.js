@@ -2,12 +2,13 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { AppLayout } from "../../components/AppLayout";
 import { useState } from "react";
-import Markdown from "react-markdown";
+import {useRouter} from "next/router";
+// import Markdown from "react-markdown";
 
 export default function NewPost(props) {
     // console.log("New Post Props: ", props);
-
-    const [postContent, setPostContent] = useState("");
+    const router = useRouter();
+    // const [postContent, setPostContent] = useState("");
     const [topic, setTopic] = useState("");
     const [keywords, setKeywords] = useState("");
 
@@ -26,6 +27,11 @@ export default function NewPost(props) {
             }),
         });
         const data = await response.json();
+        console.log("Response Data: ", data);
+        if (data.postId){
+            router.push(`/post/${data.postId}`);
+            return;
+        }
         
         if (data.error) {
             // Handle error case
@@ -33,9 +39,9 @@ export default function NewPost(props) {
             return;
         }
         
-        if (data.post) {
-            setPostContent(data.post.postDoc);
-        }
+        // if (data.post) {
+        //     setPostContent(data.post.postDoc);
+        // }
     } catch (error) {
         console.error("Error generating post:", error);
         alert("An error occurred while generating the post.");
@@ -77,9 +83,9 @@ export default function NewPost(props) {
 
             </form>
 
-            <Markdown>
+            {/* <Markdown>
                 {postContent}
-            </Markdown>
+            </Markdown> */}
             <br />  
             <p>Test: {props.test}</p>
         </div>
