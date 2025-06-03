@@ -570,3 +570,19 @@ if (data.postId){
     router.push(`/post/${data.postId}`);
     return;
 } -->
+
+
+### part-5.8
+
+part 5.7
+If a new post is created in pages/post/new.js then by router.push the postId is sent to
+[postId].js in the form of /post/postId.
+* the postId could be accessed from contex.param.postId;
+* the using getServerSideProps the database is accessed;\
+* the users collection from database is accessed using the user Auth0 credentials;
+* the posts collection from database is accessed using the postId parameter,
+* then the properties of user and post is saved in the props
+* the props are used to pass data to the html rendering component of the page
+
+the globals.css is updated to facilitate the format of the post page
+

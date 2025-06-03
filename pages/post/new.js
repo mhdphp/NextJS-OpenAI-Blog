@@ -27,7 +27,9 @@ export default function NewPost(props) {
             }),
         });
         const data = await response.json();
-        console.log("Response Data: ", data);
+        // console.log("Response Data: ", data);
+        
+        // if the data contains a postId, redirect to the post page
         if (data.postId){
             router.push(`/post/${data.postId}`);
             return;
