@@ -1,25 +1,39 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import clientPromise from '../../lib/mongodb';
+import stripeInit from "stripe";
+
+// initialize stripe and connecT to the API KEY
+const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
 
 
 export default async function handler(req, res) {
-  // testing the session
-  // all the data about the user is in the session  
-  const { user } = await getSession( req, res );
-  
-  console.log('user', user);
 
-  // connec to the mongoDB database
+  const { user } = await getSession( req, res );
+
+
+  // add the product with price
+  const lineItems = [
+    {
+      price: process.env.STRIPE_PRODUCT_PRICE_ID,
+      quantity: 1,
+    },
+  ];
+  
+  // get the protocol depending on environment "development" or "production"
+  const protocol = process.env.NODE_ENV === "development" ? "http://" : "https://";
+  const host = req.headers.host; // localhost:3000 or domain.com
+
+  // // create stripe session
+  const checkoutSession = await stripe.checkout.sessions.create ({
+    line_items: lineItems,
+    mode: "payment",
+    success_url: `${protocol}${host}/success`, // development or production environment - concatenate the protocol + host
+  });
+
+ 
   const client = await clientPromise;
   const db = client.db('blogstandard');
 
-  // find the user profile in the database using the auth0Id
-  // and nickname
-  // if the user does not exist, create it with the following fields:
-  // auth0Id: user.sub
-  // name: user.nickname
-  // email: user.email
-  // availableTokens: 10
   const userProfile = await db
   .collection('users')
   .updateOne(
@@ -34,10 +48,10 @@ export default async function handler(req, res) {
       $setOnInsert: { auth0Id: user.sub }
     },
     
-    // if the user does not exist, create it
     { upsert: true }
   );
 
-  res.status(200).json({ name: 'John Doe' })
+  res.status(200).json({ session: checkoutSession });
+  // res.status(200).json({ name: "John Cusak" });
 }
 

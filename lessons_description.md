@@ -593,3 +593,56 @@ Utility functions for retrieving application properties based on user authentica
  * This module provides the `getAppProps` function, which fetches user session data,
  * retrieves user information and posts from the MongoDB database, and returns
  * sanitized application properties for use in the blog-standard application.
+
+
+ ### part-6.0
+
+ Start with stripe payment system -- stripe.com
+ Go to product catalog -- https://dashboard.stripe.com/test/dashboard
+ Name the product 10 tokens
+ Add price 9 USD
+ Get the price code
+
+pages/api/addToken.js
+import stripeInit from "stripe";
+
+// initialize stripe and connecT to the API KEY
+<!-- const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
+...
+// add the product with price
+  const lineItems = [
+    {
+      price: process.env.STRIPE_PRODUCT_PRICE_ID,
+      quantity: 1,
+    },
+  ];
+
+   // get the protocol depending on environment "development" or "production"
+  const protocol = process.env.NODE_ENV === "development" ? "http://" : "https://";
+  const host = req.headers.host; // localhost:3000 or domain.com
+
+  // // create stripe session
+  const checkoutSession = await stripe.checkout.sessions.create ({
+    line_items: lineItems,
+    mode: "payment",
+    success_url: `${protocol}${host}/success`, // development or production environment - concatenate the protocol + host
+  });
+
+  ...
+
+  res.status(200).json({ session: checkoutSession });
+  
+  -->
+
+  pages/token-topup.js
+
+   <!-- const handleClick = async () => {
+    const result = await fetch('/api/addToken', {
+      method: 'POST',
+    });
+    const data = await result.json();
+    console.log ("RESULT: ", data);
+    window.location.href = data.session.url;
+  } -->
+
+when in stripe payment - the card serial: 4242 4242 4242 4242

@@ -115,7 +115,7 @@ export default withApiAuthRequired(async function handler(req, res) {
     db.collection("users").updateOne({
       auth0Id: user.sub
     }, {
-      $inc: { availableTokens: -2 } // Deduct one token for generating a post   
+      $inc: { availableTokens: -10 } // Deduct one token for generating a post   
     }
     );
     

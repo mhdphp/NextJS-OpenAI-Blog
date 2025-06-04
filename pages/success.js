@@ -3,31 +3,17 @@ import  { AppLayout } from "../components/AppLayout/AppLayout";
 import { getAppProps } from "../utils/getAppProps";
 
 
-export default function TokenTopup(props) {
-
-  // console.log("TokenTopup Props: ", props);
-
-  const handleClick = async () => {
-    const result = await fetch('/api/addToken', {
-      method: 'POST',
-    });
-    const data = await result.json();
-    console.log ("RESULT: ", data);
-    window.location.href = data.session.url;
-  }
+export default function Success(props) {
 
   return (
     <div>
-      <h1>This is the token topup page</h1>
-      <button onClick={handleClick} className="btn">
-        Add 10 tokens
-      </button>
+      <h1>Thank you for your purchase!</h1>
     </div>
   );
 }
 
 
-TokenTopup.getLayout = function getLayout(page, pageProps) {
+Success.getLayout = function getLayout(page, pageProps) {
   return <AppLayout {...pageProps}>{page}</AppLayout>;
 }
 
