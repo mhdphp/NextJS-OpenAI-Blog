@@ -1,8 +1,11 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import  { AppLayout } from "../components/AppLayout/AppLayout";
+import { getAppProps } from "../utils/getAppProps";
 
 
 export default function TokenTopup(props) {
+
+  console.log("TokenTopup Props: ", props);
 
   const handleClick = async () => {
     await fetch('/api/addToken', {
@@ -26,8 +29,19 @@ TokenTopup.getLayout = function getLayout(page, pageProps) {
 }
 
 
-export const getServerSideProps = withPageAuthRequired (() => {
+// export const getServerSideProps = withPageAuthRequired (() => {
+//     return {
+//         props: {},
+//     }
+// });
+
+export const getServerSideProps = withPageAuthRequired ({
+  // This function will run on the server side before rendering the page
+  // It will fetch the necessary data and pass it as props
+  async getServerSideProps(context) {
+    const props = await getAppProps(context);
     return {
-        props: {},
+      props
     }
+  }
 });

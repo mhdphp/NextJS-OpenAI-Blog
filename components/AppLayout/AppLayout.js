@@ -7,8 +7,12 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '../Logo/Logo';
 
 
-export const AppLayout = ({children}) => {
+export const AppLayout = ({children, availableTokens, posts, ...rest}) => {
+
+    // console.log("AppLayout Props: ", rest);
+
     const {user} = useUser();
+
     return (
         // divide the screen into two columns one 300px wide and the other taking the rest of the space
         // using Tailwind CSS
@@ -22,11 +26,33 @@ export const AppLayout = ({children}) => {
                     </Link>
                     <Link href="/token-topup" className="block mt-2 text-center">
                         <FontAwesomeIcon icon={faCoins} className="text-yellow-500" />
-                        <span className="pl-1">tokens available</span>
+                        <span className="pl-1">{availableTokens} tokens available</span>
                     </Link>
                 </div>
-                <div className="flex-1 overflow-y-auto bg-gradient-to-b from-slate-800 to-cyan-800">
-                    list of posts
+                <div className="px-4 flex-1 overflow-y-auto bg-gradient-to-b from-slate-800 to-cyan-800">
+                    
+                    {/* {posts.map((post)=>(
+                        <Link 
+                        key={post._id} 
+                        href={`/post/${post._id}`} 
+                        className="py-1 border border-white/0 block text-ellipsis 
+                        overflow-hidden whitespace-nowrap my-1 px-2
+                         bg-white/10 cursor-pointer rounded-sm">
+                            {post.topic}
+                        </Link>
+                    ))} */}
+                        {posts.map((post)=>(
+                        <Link 
+                            key={post._id} 
+                            href={`/post/${post._id}`} 
+                            className={`py-1 border border-white/0 block text-ellipsis 
+                            overflow-hidden whitespace-nowrap my-1 px-2
+                            bg-white/10 cursor-pointer rounded-sm ${post._id === rest.postId ? 'bg-white/30' : ''}`}>   
+                            {post.topic}
+                        </Link>
+                    ))}
+
+
                 </div>
                 <div className="bg-cyan-800 flex items-center gap-4 border-t border-t-black/50 h-20 px-2">
                     {!!user ? (

@@ -586,3 +586,10 @@ If a new post is created in pages/post/new.js then by router.push the postId is 
 
 the globals.css is updated to facilitate the format of the post page
 
+### part-5.9
+
+Create utils/getAppProps.js
+Utility functions for retrieving application properties based on user authentication.
+ * This module provides the `getAppProps` function, which fetches user session data,
+ * retrieves user information and posts from the MongoDB database, and returns
+ * sanitized application properties for use in the blog-standard application.

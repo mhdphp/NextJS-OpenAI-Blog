@@ -59,3 +59,7 @@ export const getServerSideProps = withPageAuthRequired({
     }
   }
 });
+
+TestDB.getLayout = function getLayout(page, pageProps) {
+  return <AppLayout {...pageProps}>{page}</AppLayout>;
+}

@@ -3,6 +3,7 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { AppLayout } from "../../components/AppLayout";
 import { useState } from "react";
 import {useRouter} from "next/router";
+import { getAppProps } from "../../utils/getAppProps";
 // import Markdown from "react-markdown";
 
 export default function NewPost(props) {
@@ -94,21 +95,36 @@ export default function NewPost(props) {
     );
 }
 
+// NewPost.getLayout is a function that will be used to wrap the page component with the AppLayout
+// This allows us to use the AppLayout for this page, which is a common layout for the application
+// It will pass the pageProps to the AppLayout, which can be used to render the layout with the necessary data
 NewPost.getLayout = function getLayout(page, pageProps){
     // use the AppLayout for this page
     return(
         // {page} is the page component, which is passed to the AppLayout
+        // pageProps are the props that will be passed to the AppLayout
         <AppLayout {...pageProps}>{page}</AppLayout>
     );
 }
 
 
-// using withPageAuthRequired make this page / route available only if the user is logged in
-// pageProps will be passed to the page component
-export const getServerSideProps = withPageAuthRequired (() => {
+// // using withPageAuthRequired make this page / route available only if the user is logged in
+// // pageProps will be passed to the page component
+// export const getServerSideProps = withPageAuthRequired (() => {
+//     return {
+//         props: {
+//             test: "this is a test",
+//         },
+//     }
+// });
+
+export const getServerSideProps = withPageAuthRequired ({
+  // This function will run on the server side before rendering the page
+  // It will fetch the necessary data and pass it as props
+  async getServerSideProps(context) {
+    const props = await getAppProps(context);
     return {
-        props: {
-            test: "this is a test",
-        },
+      props
     }
+  }
 });

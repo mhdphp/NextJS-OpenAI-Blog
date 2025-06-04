@@ -6,7 +6,7 @@ import { redirect } from "next/dist/server/api-utils";
 import Markdown from "react-markdown"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
-
+import { getAppProps } from "../../utils/getAppProps";
 
 
 
@@ -34,7 +34,7 @@ export default function Post(props) {
             </div>
           ))}
         </div> */}
-        // the case where keywords is undefined or null
+        {/* the case where keywords is undefined or null */}
         <div className="flex flex-wrap pt-2 gap-1">
           {(props.keywords?.split(',') ?? []).map((keyword, i) => (
             <div key={i} className="p-2 rounded-full bg-slate-800 text-white">
@@ -67,6 +67,9 @@ Post.getLayout = function getLayout(page, pageProps){
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(context) {
     try {
+      // get props from the utility function
+      const props = await getAppProps(context);
+    
       // 1. Get user session
       const userSession = await getSession(context.req, context.res);
       if (!userSession?.user?.sub) {
@@ -103,6 +106,8 @@ export const getServerSideProps = withPageAuthRequired({
           title: post.title || 'Untitled Post',
           metaDescription: post.metaDescription || '',
           keywords: post.keywords || [],
+          postId: post._id.toString(),
+          ...props, // Spread the props from getAppProps
           // Include commonly needed user data
           user: {
             nickname: userSession.user.nickname,
