@@ -646,3 +646,10 @@ import stripeInit from "stripe";
   } -->
 
 when in stripe payment - the card serial: 4242 4242 4242 4242
+
+ ### part-6.1
+
+ Finalizing the Stripe integration.
+ Some problems because the event.type === 'payment_intent.succeeded' didn't work for me.
+ I have to change to "charge_succeeded"
+ Other solution for stripe integration is the stripe1.js file.

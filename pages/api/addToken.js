@@ -10,7 +10,6 @@ export default async function handler(req, res) {
 
   const { user } = await getSession( req, res );
 
-
   // add the product with price
   const lineItems = [
     {
@@ -28,6 +27,18 @@ export default async function handler(req, res) {
     line_items: lineItems,
     mode: "payment",
     success_url: `${protocol}${host}/success`, // development or production environment - concatenate the protocol + host
+    payment_intent_data: {
+      metadata: {
+        sub: user.sub,
+        name: user.nickname,
+        email: user.email
+      }
+    },
+    metadata: {
+      sub: user.sub,
+      name: user.nickname,
+      email: user.email
+    }
   });
 
  
