@@ -1,7 +1,15 @@
-import { useReducer } from 'react'
+import { useReducer } from 'react';
 import '../styles/globals.css'
-import { UserProvider } from '@auth0/nextjs-auth0/client'
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { DM_Sans, DM_Serif_Display } from 'next/font/google'; // Changed import
+import css from 'styled-jsx/css';
+// in order to not get the big fontawesome icon at the time of rendering the page
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent Font Awesome from adding its CSS since we did it manually above
+config.autoAddCss = false;
+
+
 
 // define the fonts to be used in the application
 const dmSans = DM_Sans({

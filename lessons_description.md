@@ -653,3 +653,13 @@ when in stripe payment - the card serial: 4242 4242 4242 4242
  Some problems because the event.type === 'payment_intent.succeeded' didn't work for me.
  I have to change to "charge_succeeded"
  Other solution for stripe integration is the stripe1.js file.
+
+### part-7.0
+1. in _app.js inserted the following rows (to stop that a fontawesome icon to appear big before the all page is rendered)
+<!-- // in order to not get the big fontawesome icon at the time of rendering the page -->
+<!-- import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent Font Awesome from adding its CSS since we did it manually above
+config.autoAddCss = false; -->
+
+2. style the new.js page and add a loading icon with animation
