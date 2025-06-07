@@ -86,7 +86,8 @@ export default function NewPost(props) {
                         <textarea
                             className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
                             placeholder="Enter a topic for your blog post" 
-                            value={topic} 
+                            value={topic}
+                            maxLength={80}
                             onChange={(e) => setTopic(e.target.value)}
                         />
                     </div>
@@ -98,6 +99,7 @@ export default function NewPost(props) {
                             className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
                             placeholder="Enter keywords for your blog post"
                             value={keywords}
+                            maxLength={80}
                             onChange={(e) => setKeywords(e.target.value)}
                         />
                         <small className="block mb-2">
@@ -105,7 +107,7 @@ export default function NewPost(props) {
                         </small>
                     </div>
 
-                    <button type='submit' className="btn">
+                    <button type='submit' className="btn" disabled={!topic.trim() || !keywords.trim()}>
                         Generate
                     </button>
 

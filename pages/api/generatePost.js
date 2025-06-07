@@ -50,6 +50,20 @@ export default withApiAuthRequired(async function handler(req, res) {
 
   const { topic, keywords } = req.body;
 
+  
+  // check if there are no topic or no keywords
+  // if no topic or no keywords exit from the execution of this end point
+  if (!topic || !keywords){
+    res.status(422);
+    return;
+  }
+
+  // limit the length of the topic and of the keywords
+  if (topic.length > 80 || keywords.length > 80){
+    res.status(422);
+    return;
+  }
+
   // first API call to generate the blog post content
   const response = await openai.createChatCompletion({
     model: "gpt-4o-mini",

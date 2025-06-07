@@ -59,7 +59,7 @@
 
 @layer components {
   .btn {
-    @apply hover:no-underline block bg-green-500 tracking-wider w-full mt-2 mb-2 text-center
+    @apply disabled:bg-green-200 disabled:cursor-not-allowed hover:no-underline block bg-green-500 tracking-wider w-full mt-2 mb-2 text-center
      text-white font-bold cursor-pointer uppercase py-2 px-2 rounded-md hover:bg-green-600 transition-colors
   }
 }

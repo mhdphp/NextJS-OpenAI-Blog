@@ -12,6 +12,7 @@ AUTH0_CLIENT_ID=
 AUTH0_CLIENT_SECRET=
 
 
+
 ### part-3 branch
 
 in index.js
@@ -57,6 +58,7 @@ const {user} = useUser();
         props: {},
     }
 });
+
 
 ### part-4 branch
 
@@ -109,6 +111,7 @@ export const getServerSideProps = withPageAuthRequired (() => {
         },
     }
 }); -->
+
 
 ### part-4.1 branch
 
@@ -219,6 +222,7 @@ changing in next.config.js images.domains with image.remotePatterns
     ],
   }, -->
 
+
   ### part-5 branch Generating blog posts with OpenAI GPT API and MongoDB
   Create an api end point for testing purposes:
   pages/api/generatePost.js
@@ -251,6 +255,7 @@ changing in next.config.js images.domains with image.remotePatterns
         </div>
     );
 } -->
+
 
 ### part-5.1 branch Calling OpenAI API
 
@@ -417,6 +422,7 @@ created form for both topic and keywords
 
   <!-- const { topic, keywords } = req.body; -->
 
+
 ### part-5.4.1
 
 create MongoDb at: https://cloud.mongodb.com
@@ -457,6 +463,7 @@ update **pages/token-topup.js**
     </div>
   );
 } -->
+
 
 ### part-5.4.2
 
@@ -553,6 +560,7 @@ The add the post to the database with the following strucure:
   5. validate the user and post existence
   6. get the post properties from database and save it as props (to be availale to the page)
 
+
 ### part-5.7
 
 In api/generatedPost.js get response the postId
@@ -585,6 +593,7 @@ If a new post is created in pages/post/new.js then by router.push the postId is 
 * the props are used to pass data to the html rendering component of the page
 
 the globals.css is updated to facilitate the format of the post page
+
 
 ### part-5.9
 
@@ -647,12 +656,14 @@ import stripeInit from "stripe";
 
 when in stripe payment - the card serial: 4242 4242 4242 4242
 
+
  ### part-6.1
 
  Finalizing the Stripe integration.
  Some problems because the event.type === 'payment_intent.succeeded' didn't work for me.
  I have to change to "charge_succeeded"
  Other solution for stripe integration is the stripe1.js file.
+
 
 ### part-7.0
 1. in _app.js inserted the following rows (to stop that a fontawesome icon to appear big before the all page is rendered)
@@ -663,3 +674,31 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false; -->
 
 2. style the new.js page and add a loading icon with animation
+
+
+### part-7.1
+
+inserted disabled class btn in globals.css
+inserted disabled class in btn in new.js
+
+<!-- <button 
+  type='submit' 
+  className="btn" 
+  disabled={!topic.trim() || !keywords.trim()}>
+    Generate
+</button> -->
+
+validation at the server level in generatePost.js
+
+<!-- // check if there are no topic or no keywords
+// if no topic or no keywords exit from the execution of this end point
+if (!topic || !keywords){
+  res.status(422);
+  return;
+}
+
+// limit the length of the topic and of the keywords
+if (topic.length > 80 || keywords.length > 80){
+  res.status(422);
+  return;
+} -->
