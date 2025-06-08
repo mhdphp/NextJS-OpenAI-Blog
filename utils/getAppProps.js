@@ -35,6 +35,7 @@ export const getAppProps = async (context) => {
     // 5. Fetch user posts
     const posts = await db.collection("posts")
     .find({ userId: user._id })
+    .limit(5) // limited to 5 posts
     .sort({ createdAt: -1 }) // Sort by creation date, most recent first
     .toArray();
 

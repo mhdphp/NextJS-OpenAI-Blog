@@ -702,3 +702,8 @@ if (topic.length > 80 || keywords.length > 80){
   res.status(422);
   return;
 } -->
+
+
+### part-8.0
+
+Create posts context and  retrieve the last 5 posts
