@@ -11,13 +11,12 @@ import PostsContext from '../../context/postsContext';
 
 export const AppLayout = ({children, availableTokens, posts: postsFromSSR, ...rest}) => {
 
-    const {user} = useUser();
+    const {user} = useUser(); // from auth0 
 
     const { setPostsFromSSR, posts } = useContext(PostsContext);
 
     useEffect(() => {
         setPostsFromSSR(postsFromSSR);
-
     },[postsFromSSR, setPostsFromSSR])
 
     return (

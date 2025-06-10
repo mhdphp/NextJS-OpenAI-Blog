@@ -6,7 +6,7 @@ import css from 'styled-jsx/css';
 // in order to not get the big fontawesome icon at the time of rendering the page
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { PostProvider } from '../context/postsContext';
+import { PostsProvider } from '../context/postsContext';
 // Prevent Font Awesome from adding its CSS since we did it manually above
 config.autoAddCss = false;
 
@@ -34,13 +34,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <UserProvider>
-      <PostProvider>
+      {/* Since the PostProvider children are the main tag, all the appLayout has access to the PostsContext */}
+      <PostsProvider>
         <main className={`${dmSans.variable} ${dmSerifDisplay.variable} font-body`}>
 
           {getLayout(<Component {...pageProps} />, pageProps)}
           
         </main>
-      </PostProvider>
+      </PostsProvider>
        
     </UserProvider>
   ) 
