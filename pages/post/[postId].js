@@ -2,7 +2,6 @@ import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import clientPromise from "../../lib/mongodb";
 import { AppLayout } from "../../components/AppLayout/AppLayout";
 import { ObjectId } from "mongodb";
-import { redirect } from "next/dist/server/api-utils";
 import Markdown from "react-markdown"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
@@ -61,8 +60,6 @@ Post.getLayout = function getLayout(page, pageProps){
         <AppLayout {...pageProps}>{page}</AppLayout>
     );
 }
-
-
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(context) {
