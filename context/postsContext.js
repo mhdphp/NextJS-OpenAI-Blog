@@ -29,6 +29,19 @@ export const PostsProvider = ({ children}) =>{
       const postsResult = data.posts || [];
     //   const postsResult = data.posts || [];
       console.log("POSTS RESULT: ", postsResult);
+
+      setPosts((value) =>{
+        const newPosts = [...value];
+        postsResult.forEach(post => {
+          const exists = newPosts.find((p) =>{
+            p._id === post._id
+          });
+          if (!exists){
+            newPosts.push(post);
+          }
+        });
+        return newPosts
+      });
     },[]);
 
     return (

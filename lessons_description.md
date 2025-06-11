@@ -707,3 +707,29 @@ if (topic.length > 80 || keywords.length > 80){
 ### part-8.0
 
 Create posts context and  retrieve the last 5 posts
+
+### part-8.1
+
+Create getPosts endpoint
+Add functionality to the button "Load More Posts"
+
+in getPosts.js (very important)
+ change: 
+ <!-- created: { $lt: new Date(lastPostDate) }, -->
+ with:
+ <!-- createdAt: { $lt: new Date(lastPostDate) }, -->
+
+In postsContext.js add:
+
+<!-- setPosts((value) =>{
+        const newPosts = [...value];
+        postsResult.forEach(post => {
+          const exists = newPosts.find((p) =>{
+            p._id === post._id
+          });
+          if (!exists){
+            newPosts.push(post);
+          }
+        });
+        return newPosts
+      }); -->
