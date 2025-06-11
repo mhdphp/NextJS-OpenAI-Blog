@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from "react";
 
-
 const PostsContext = React.createContext({});
-
 
 export default PostsContext;
 
