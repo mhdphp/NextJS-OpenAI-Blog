@@ -1,6 +1,6 @@
 # Next JS & Open AI / GPT: Next-generation Next JS & AI Apps
 
-This repository contains the code and resources for the course **Next JS & Open AI / GPT: Next-generation Next JS & AI apps**. Below is a step-by-step walkthrough of the course structure and important notes about the repository.
+This repository contains the code and resources for the course **Next JS & Open AI / GPT: Next-generation Next JS & AI apps**. Below is a step-by-step walkthrough of the course structure and important notes about the repository. The link for the course: https://www.udemy.com/course/next-js-ai/?couponCode=24T2MT120625C
 
 ## Course Walkthrough
 
