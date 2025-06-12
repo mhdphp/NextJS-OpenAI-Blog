@@ -13,7 +13,7 @@ export const AppLayout = ({children, availableTokens, posts: postsFromSSR, ...re
 
     const {user} = useUser(); // from auth0 
 
-    const { setPostsFromSSR, posts, getPosts } = useContext(PostsContext);
+    const { setPostsFromSSR, posts, getPosts, hasMorePosts } = useContext(PostsContext);
 
     useEffect(() => {
         setPostsFromSSR(postsFromSSR);
@@ -47,10 +47,21 @@ export const AppLayout = ({children, availableTokens, posts: postsFromSSR, ...re
                             {post.topic}
                         </Link>
                     ))}
-                <div onClick={() => getPosts({lastPostDate: posts[posts.length - 1].created })}
-                    className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4">
-                        Load More Posts
-                </div>
+                
+                 {hasMorePosts && (
+                    <div 
+                        onClick={() => {
+                            if (hasMorePosts) {
+                                getPosts({ lastPostDate: posts[posts.length - 1].created });
+                            }
+                        }}
+                        className={`hover:underline text-sm text-center cursor-pointer mt-4 
+                                ${hasMorePosts ? 'text-slate-400' : 'text-gray-500 cursor-default'}`}
+                    >
+                        {hasMorePosts ? "Load More Posts" : "No more posts"}
+                    </div>
+                    )}
+
                 </div> 
                 <div className="bg-cyan-800 flex items-center gap-4 border-t border-t-black/50 h-20 px-2">
                     {!!user ? (

@@ -733,3 +733,8 @@ In postsContext.js add:
         });
         return newPosts
       }); -->
+
+### part-8.2
+
+Fix dissapearing the posts in the sidebar
+chgs AppLayout.js and postsContext.js
