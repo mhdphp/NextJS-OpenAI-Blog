@@ -16,7 +16,8 @@ This course covers the integration of Next.js with OpenAI's GPT to build next-ge
    - The last 5 subsections of **Section 7** are not covered in this repository.  
 
 3. **Package Manager**:  
-   - This project uses `pnpm` as the package manager. Make sure you have it installed before setting up the project.  
+   - This project uses `pnpm` as the package manager. Make sure you have it installed before setting up the project. 
+   - To start the project run: `pnpm dev`
 
 ## Getting Started
 
