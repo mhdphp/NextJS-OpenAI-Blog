@@ -738,3 +738,5 @@ In postsContext.js add:
 
 Fix dissapearing the posts in the sidebar
 chgs AppLayout.js and postsContext.js
+
+Is missing the last 5 sub-sections from section-7.
